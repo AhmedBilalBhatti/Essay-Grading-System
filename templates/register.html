@@ -31,12 +31,13 @@
 
 
 
-                                    <form action="#">
+                                    <form method="POST" action="{% url 'register' %}" enctype="multipart/form-data">
+                                        {% csrf_token %}
                                         <div class="input-wrapper">
-                                            <input type="text" placeholder="Full Name" required="">
-                                            <input type="email" placeholder="Enter your mail">
-                                            <input type="password" placeholder="Enter your Password">
-                                            <input type="file" placeholder="Profile Picture">
+                                            <input type="text" name="username" placeholder="Full Name" required="">
+                                            <input type="email" name="email" placeholder="Enter your mail">
+                                            <input type="password" name="password" placeholder="Enter your Password">
+                                            <input type="file" name="profile_picture" placeholder="Profile Picture">
                                         </div>
                                         <div class="check-wrapper">
                                             <div class="form-check">
@@ -47,7 +48,7 @@
                                             </div>
                                         </div>
                                         <button class="rts-btn btn-primary">Create Account</button>
-                                        <p>If you have an account? <a class="ml--5" href="login.html">Sign in</a></p>
+                                        <p>If you have an account? <a class="ml--5" href="{% url 'login' %}">Sign in</a></p>
                                     </form>
 
 

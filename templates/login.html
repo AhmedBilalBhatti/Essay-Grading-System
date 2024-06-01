@@ -1,26 +1,19 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
-
-<!-- Mirrored from html.themewant.com/intellectai/light/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 31 May 2024 15:23:08 GMT -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/fav.png">
-    <title>Intellectai Dashboard</title>
-    <!-- bootstrap Css -->
-    <link rel="stylesheet" href="assets/css/plugins/fontawesome-6.css">
-    <link rel="stylesheet" href="assets/css/plugins/swiper.css">
-    <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/images/fav.png'%}">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'assets/css/plugins/fontawesome-6.css'%}">
+    <link rel="stylesheet" href="{% static 'assets/css/plugins/swiper.css'%}">
+    <link rel="stylesheet" href="{% static 'assets/css/vendor/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css'%}">
 
 </head>
 
 <body class="register page-login">
-
-
-
-
 
     <div class="dash-board-main-wrapper pt--40">
         <div class="left-side-bar">
@@ -28,25 +21,25 @@
                 <div class="single-menu-wrapper">
                     <a href="index.html" class="single-menu">
                         <div class="icon">
-                            <img src="assets/images/icons/01.png" alt="icons">
+                            <img src="{% static 'assets/images/icons/01.png'%}" alt="icons">
                         </div>
                         <p>Home</p>
                     </a>
                     <a href="community-feed.html" class="single-menu">
                         <div class="icon">
-                            <img src="assets/images/icons/02.png" alt="icons">
+                            <img src="{% static 'assets/images/icons/02.png'%}" alt="icons">
                         </div>
                         <p>Community Feed</p>
                     </a>
                     <a href="community-details.html" class="single-menu openuptip" flow="right" tooltip="Search">
                         <div class="icon">
-                            <img src="assets/images/icons/02.png" alt="icons">
+                            <img src="{% static 'assets/images/icons/02.png'%}" alt="icons">
                         </div>
                         <p>Community Details</p>
                     </a>
                     <a href="manage-subscription.html" class="single-menu">
                         <div class="icon">
-                            <img src="assets/images/icons/03.png" alt="icons">
+                            <img src="{% static 'assets/images/icons/03.png'%}" alt="icons">
                         </div>
                         <p>Manage Subscription</p>
                     </a>
@@ -54,19 +47,19 @@
                 <div class="single-menu-wrapper">
                     <a href="chatbot.html" class="single-menu">
                         <div class="icon">
-                            <img src="assets/images/icons/04.png" alt="icons">
+                            <img src="{% static 'assets/images/icons/04.png'%}" alt="icons">
                         </div>
                         <p>AI Chat Bot</p>
                     </a>
                     <a href="image-generator.html" class="single-menu">
                         <div class="icon">
-                            <img src="assets/images/icons/05.png" alt="icons">
+                            <img src="{% static 'assets/images/icons/05.png'%}" alt="icons">
                         </div>
                         <p>Image Generator</p>
                     </a>
                     <a href="voicegenerator.html" class="single-menu">
                         <div class="icon">
-                            <img src="assets/images/icons/06.png" alt="icons">
+                            <img src="{% static 'assets/images/icons/06.png'%}" alt="icons">
                         </div>
                         <p>Voice Generate</p>
                     </a>
@@ -74,13 +67,13 @@
                 <div class="single-menu-wrapper">
                     <a href="register.html" class="single-menu">
                         <div class="icon">
-                            <img src="assets/images/icons/07.png" alt="icons">
+                            <img src="{% static 'assets/images/icons/07.png'%}" alt="icons">
                         </div>
                         <p>Register</p>
                     </a>
                     <a class="collapse-btn collapsed single-menu" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                         <div class="icon">
-                            <img src="assets/images/icons/08.png" alt="icons">
+                            <img src="{% static 'assets/images/icons/08.png'%}" alt="icons">
                         </div>
                         <p>Settings</p>
                     </a>
@@ -108,7 +101,7 @@
                     </div>
                     <a href="login.html" class="single-menu">
                         <div class="icon">
-                            <img src="assets/images/icons/09.png" alt="icons">
+                            <img src="{% static 'assets/images/icons/09.png'%}" alt="icons">
                         </div>
                         <p>Logout</p>
                     </a>
@@ -116,7 +109,7 @@
             </div>
             <div class="bottom-user">
                 <div class="user-wrapper">
-                    <img src="assets/images/avatar/02.png" alt="avatar">
+                    <img src="{% static 'assets/images/avatar/02.png'%}" alt="avatar">
                     <div class="info">
                         <h6 class="title">Mack Gok</h6>
                         <a href="#">openup@net.com</a>
@@ -143,10 +136,13 @@
                                     <h5 class="title">Login to continue</h5>
                                 </div>
                                 <div class="body">
-                                    <form action="#" method="post">
+
+
+                                    <form action="{% url 'login' %}" method="post">
+                                        {% csrf_token %}
                                         <div class="input-wrapper">
-                                            <input type="email" placeholder="Enter your mail" required="">
-                                            <input type="password" placeholder="Password">
+                                            <input type="email" name="email" placeholder="Enter your mail" required="">
+                                            <input type="password" name="password" placeholder="Password">
                                         </div>
                                         <div class="check-wrapper">
                                             <div class="form-check">
@@ -158,14 +154,16 @@
                                             <a href="reset.html">Forgot password?</a>
                                         </div>
                                         <button type="submit" class="rts-btn btn-primary">Sing In</button>
-                                        <p>Don't have an account? <a class="ml--5" href="register.html">Sign Up for Free</a></p>
+                                        <p>Don't have an account? <a class="ml--5" href="{% url 'register' %}">Sign Up for Free</a></p>
                                     </form>
+
+
+
                                 </div>
-                                <div class="other-separator">
+                                <!-- <div class="other-separator">
                                     <span>or</span>
                                 </div>
                                 <div class="sign-in-otherway">
-                                    <!-- ingle -->
                                     <div class="single">
                                         <div class="icon">
                                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -177,8 +175,6 @@
                                         </div>
                                         <p>Continue with Google</p>
                                     </div>
-                                    <!-- ingle end -->
-                                    <!-- ingle -->
                                     <div class="single">
                                         <div class="icon">
                                             <svg width="15" height="19" viewBox="0 0 15 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -187,8 +183,7 @@
                                         </div>
                                         <p>Continue with Google</p>
                                     </div>
-                                    <!-- ingle end -->
-                                </div>
+                                </div> -->
                             </div>
                             <!-- single login area end -->
                         </div>
@@ -201,26 +196,18 @@
 
 
     <!-- jquery Js -->
-    <script src="assets/js/plugins/jquery.min.js"></script>
-    <script src="assets/js/plugins/swiper.js"></script>
-    <script src="assets/js/plugins/bootstrap.min.js"></script>
+    <script src="{% static 'assets/js/plugins/jquery.min.js'%}"></script>
+    <script src="{% static 'assets/js/plugins/swiper.js'%}"></script>
+    <script src="{% static 'assets/js/plugins/bootstrap.min.js'%}"></script>
     <!-- custom js -->
-    <script src="assets/js/main.js"></script>
+    <script src="{% static 'assets/js/main.js'%}"></script>
     <script>
-        // Check if user has already set a theme preference
         var storedTheme = localStorage.getItem('intellactai');
-
-        // If no preference is found, default to dark mode
         if (!storedTheme) {
             storedTheme = "dark";
             localStorage.setItem('intellactai', storedTheme);
         }
-
-        // Set the theme based on the stored value
         document.documentElement.setAttribute('data-theme', storedTheme);
     </script>
 </body>
-
-
-<!-- Mirrored from html.themewant.com/intellectai/light/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 31 May 2024 15:23:08 GMT -->
 </html>
