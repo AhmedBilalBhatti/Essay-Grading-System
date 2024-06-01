@@ -62,4 +62,9 @@ def home(request):
 
 
 def main(request):
-    return render(request, 'chatbot.html')
+    email =  request.session.get('identity')
+    if email:
+        user = Registration.objects.get(email=email)
+    else:
+        return redirect('login')
+    return render(request, 'chatbot.html', {'user':user})
