@@ -3,5 +3,6 @@ from .import views
 from Grader import *
 
 urlpatterns = [
-    path('', views.home, name='home'),
+    path('home', views.home, name='home'),
+    path('', views.register, name='register'),
 ]
