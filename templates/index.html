@@ -185,17 +185,20 @@
                             </div>
                             <div class="single_action__haeader user_avatar__information openuptip" flow="down" tooltip="Profile">
                                 <div class="avatar">
-                                    <img src="{% static 'assets/images/avatar/01.png'%}" alt="avatar">
+                                    <img src="{{ user.profile_picture.url }}" alt="avatar">
                                 </div>
                                 <div class="user_information_main_wrapper slide-down__click">
                                     <div class="user_header">
+                                        {% if user %}
                                         <div class="main-avatar">
-                                            <img src="{% static 'assets/images/avatar/user-2.svg'%}" alt="user">
+                                            <img src="{{ user.profile_picture.url }}" alt="user" width="640" height="64">
                                         </div>
+                                        
                                         <div class="user_naim-information">
-                                            <h3 class="title">MR.Crow Kader</h3>
-                                            <span class="desig">CEO, Valo How Masud</span>
+                                            <h3 class="title">{{ user.username }}</h3>
+                                            <span class="desig">{{ user.email }}</span>
                                         </div>
+                                        {% endif %}
                                     </div>
                                     <div class="user_body_content">
                                         <ul class="items">
@@ -232,7 +235,7 @@
                                         </ul>
                                     </div>
                                     <div class="popup-footer-btn">
-                                        <a href="#" class="geex-content__header__popup__footer__link">Logout
+                                        <a href="{% url 'logout' %}" class="geex-content__header__popup__footer__link">Logout
                                             <i class="fa-light fa-arrow-right"></i>
                                         </a>
                                     </div>
@@ -249,7 +252,7 @@
 
 
 
-    <button type="button" class="btn btn-primary">Open modal for @mdo</button>
+    <!-- <button type="button" class="btn btn-primary">Open modal for @mdo</button>
 
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -258,7 +261,6 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <!-- rts pricing plane area start -->
                     <div class="pricing-plane-area pb--50">
                         <div class="container">
                             <div class="row">
@@ -272,7 +274,6 @@
                                 </div>
                             </div>
 
-                            <!-- tabs area start -->
                             <div class="tab-area-pricing-two mt--30">
                                 <ul class="nav nav-tabs pricing-button-one two" id="myTab" role="tablist">
                                     <li class="nav-item" role="presentation">
@@ -289,7 +290,6 @@
                                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                         <div class="row g-5 mt--10">
                                             <div class="col-lg-4 col-md-6 col-sm-12 col-12">
-                                                <!-- single pricing-area -->
                                                 <div class="single-pricing-single-two">
                                                     <div class="head">
                                                         <span class="top">Basic</span>
@@ -302,38 +302,28 @@
                                                         <p class="para">A premium pricing plan is a pricing <br> structure that is designed.</p>
 
                                                         <div class="check-wrapper">
-                                                            <!-- single check -->
                                                             <div class="check-area">
                                                                 <i class="fa-solid fa-check"></i>
                                                                 <p>10,000 Monthly Word Limit</p>
                                                             </div>
-                                                            <!-- single check end-->
-                                                            <!-- single check -->
                                                             <div class="check-area">
                                                                 <i class="fa-solid fa-check"></i>
                                                                 <p>10+ Templates</p>
                                                             </div>
-                                                            <!-- single check end-->
-                                                            <!-- single check -->
                                                             <div class="check-area">
                                                                 <i class="fa-solid fa-check"></i>
                                                                 <p>All types of content</p>
                                                             </div>
-                                                            <!-- single check end-->
-                                                            <!-- single check -->
                                                             <div class="check-area">
                                                                 <i class="fa-solid fa-check"></i>
                                                                 <p>10+ Languages</p>
                                                             </div>
-                                                            <!-- single check end-->
                                                         </div>
                                                         <a href="#" class="pricing-btn">Get Started</a>
                                                     </div>
                                                 </div>
-                                                <!-- single pricing-area end -->
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-12 col-12">
-                                                <!-- single pricing-area -->
                                                 <div class="single-pricing-single-two active">
                                                     <div class="head">
                                                         <span class="top">Diamond</span>
@@ -346,38 +336,28 @@
                                                         <p class="para">A premium pricing plan is a pricing <br> structure that is designed.</p>
 
                                                         <div class="check-wrapper">
-                                                            <!-- single check -->
                                                             <div class="check-area">
                                                                 <i class="fa-solid fa-check"></i>
                                                                 <p>60,000 Monthly Word Limit</p>
                                                             </div>
-                                                            <!-- single check end-->
-                                                            <!-- single check -->
                                                             <div class="check-area">
                                                                 <i class="fa-solid fa-check"></i>
                                                                 <p>60+ Templates</p>
                                                             </div>
-                                                            <!-- single check end-->
-                                                            <!-- single check -->
                                                             <div class="check-area">
                                                                 <i class="fa-solid fa-check"></i>
                                                                 <p>All types of content</p>
                                                             </div>
-                                                            <!-- single check end-->
-                                                            <!-- single check -->
                                                             <div class="check-area">
                                                                 <i class="fa-solid fa-check"></i>
                                                                 <p>60+ Languages</p>
                                                             </div>
-                                                            <!-- single check end-->
                                                         </div>
                                                         <a href="#" class="pricing-btn">Get Started</a>
                                                     </div>
                                                 </div>
-                                                <!-- single pricing-area end -->
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-12 col-12">
-                                                <!-- single pricing-area -->
                                                 <div class="single-pricing-single-two">
                                                     <div class="head">
                                                         <span class="top">Premium</span>
@@ -390,42 +370,32 @@
                                                         <p class="para">A premium pricing plan is a pricing <br> structure that is designed.</p>
 
                                                         <div class="check-wrapper">
-                                                            <!-- single check -->
                                                             <div class="check-area">
                                                                 <i class="fa-solid fa-check"></i>
                                                                 <p>30,000 Monthly Word Limit</p>
                                                             </div>
-                                                            <!-- single check end-->
-                                                            <!-- single check -->
                                                             <div class="check-area">
                                                                 <i class="fa-solid fa-check"></i>
                                                                 <p>30+ Templates</p>
                                                             </div>
-                                                            <!-- single check end-->
-                                                            <!-- single check -->
                                                             <div class="check-area">
                                                                 <i class="fa-solid fa-check"></i>
                                                                 <p>All types of content</p>
                                                             </div>
-                                                            <!-- single check end-->
-                                                            <!-- single check -->
                                                             <div class="check-area">
                                                                 <i class="fa-solid fa-check"></i>
                                                                 <p>40+ Languages</p>
                                                             </div>
-                                                            <!-- single check end-->
                                                         </div>
                                                         <a href="#" class="pricing-btn">Get Started</a>
                                                     </div>
                                                 </div>
-                                                <!-- single pricing-area end -->
                                             </div>
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                         <div class="row g-5 mt--10">
                                             <div class="col-lg-4 col-md-6 col-sm-12 col-12">
-                                                <!-- single pricing-area -->
                                                 <div class="single-pricing-single-two">
                                                     <div class="head">
                                                         <span class="top">Basic</span>
@@ -438,38 +408,28 @@
                                                         <p class="para">A premium pricing plan is a pricing <br> structure that is designed.</p>
 
                                                         <div class="check-wrapper">
-                                                            <!-- single check -->
                                                             <div class="check-area">
                                                                 <i class="fa-solid fa-check"></i>
                                                                 <p>10,000 Yearly Word Limit</p>
                                                             </div>
-                                                            <!-- single check end-->
-                                                            <!-- single check -->
                                                             <div class="check-area">
                                                                 <i class="fa-solid fa-check"></i>
                                                                 <p>10+ Templates</p>
                                                             </div>
-                                                            <!-- single check end-->
-                                                            <!-- single check -->
                                                             <div class="check-area">
                                                                 <i class="fa-solid fa-check"></i>
                                                                 <p>All types of content</p>
                                                             </div>
-                                                            <!-- single check end-->
-                                                            <!-- single check -->
                                                             <div class="check-area">
                                                                 <i class="fa-solid fa-check"></i>
                                                                 <p>10+ Languages</p>
                                                             </div>
-                                                            <!-- single check end-->
                                                         </div>
                                                         <a href="#" class="pricing-btn">Get Started</a>
                                                     </div>
                                                 </div>
-                                                <!-- single pricing-area end -->
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-12 col-12">
-                                                <!-- single pricing-area -->
                                                 <div class="single-pricing-single-two active">
                                                     <div class="head">
                                                         <span class="top">Diamond</span>
@@ -482,38 +442,28 @@
                                                         <p class="para">A premium pricing plan is a pricing <br> structure that is designed.</p>
 
                                                         <div class="check-wrapper">
-                                                            <!-- single check -->
                                                             <div class="check-area">
                                                                 <i class="fa-solid fa-check"></i>
                                                                 <p>60,000 Yearly Word Limit</p>
                                                             </div>
-                                                            <!-- single check end-->
-                                                            <!-- single check -->
                                                             <div class="check-area">
                                                                 <i class="fa-solid fa-check"></i>
                                                                 <p>60+ Templates</p>
                                                             </div>
-                                                            <!-- single check end-->
-                                                            <!-- single check -->
                                                             <div class="check-area">
                                                                 <i class="fa-solid fa-check"></i>
                                                                 <p>All types of content</p>
                                                             </div>
-                                                            <!-- single check end-->
-                                                            <!-- single check -->
                                                             <div class="check-area">
                                                                 <i class="fa-solid fa-check"></i>
                                                                 <p>60+ Languages</p>
                                                             </div>
-                                                            <!-- single check end-->
                                                         </div>
                                                         <a href="#" class="pricing-btn">Get Started</a>
                                                     </div>
                                                 </div>
-                                                <!-- single pricing-area end -->
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-12 col-12">
-                                                <!-- single pricing-area -->
                                                 <div class="single-pricing-single-two">
                                                     <div class="head">
                                                         <span class="top">Silver</span>
@@ -526,48 +476,37 @@
                                                         <p class="para">A premium pricing plan is a pricing <br> structure that is designed.</p>
 
                                                         <div class="check-wrapper">
-                                                            <!-- single check -->
                                                             <div class="check-area">
                                                                 <i class="fa-solid fa-check"></i>
                                                                 <p>30,000 Yearly Word Limit</p>
                                                             </div>
-                                                            <!-- single check end-->
-                                                            <!-- single check -->
                                                             <div class="check-area">
                                                                 <i class="fa-solid fa-check"></i>
                                                                 <p>30+ Templates</p>
                                                             </div>
-                                                            <!-- single check end-->
-                                                            <!-- single check -->
                                                             <div class="check-area">
                                                                 <i class="fa-solid fa-check"></i>
                                                                 <p>All types of content</p>
                                                             </div>
-                                                            <!-- single check end-->
-                                                            <!-- single check -->
                                                             <div class="check-area">
                                                                 <i class="fa-solid fa-check"></i>
                                                                 <p>40+ Languages</p>
                                                             </div>
-                                                            <!-- single check end-->
                                                         </div>
                                                         <a href="#" class="pricing-btn">Get Started</a>
                                                     </div>
                                                 </div>
-                                                <!-- single pricing-area end -->
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- tabs area end -->
                         </div>
                     </div>
-                    <!-- rts pricing plane area end -->
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- header area End -->
 
 
@@ -603,7 +542,7 @@
                     </a> -->
                 </div>
                 <!-- <div class="single-menu-wrapper">
-                    <a href="chatbot.html" class="single-menu openuptip" flow="right" tooltip="Search">
+                    <a href="{% url 'main' %}" class="single-menu openuptip" flow="right" tooltip="Search">
                         <div class="icon">
                             <img src="{% static 'assets/images/icons/04.png'%}" alt="icons">
                         </div>
@@ -637,12 +576,12 @@
                     </a>
                     <div class="collapse" id="collapseExample">
                         <ul class="submenu rts-default-sidebar-list">
-                            <!-- <li>
+                            <li>
                                 <a href="faq.html">
                                     <i class="fa-sharp fa-regular fa-user"></i>
-                                    <span>FAQ's</span>
+                                    <span>Profile</span>
                                 </a>
-                            </li> -->
+                            </li> 
                             <!-- <li>
                                 <a href="login.html">
                                     <i class="fa-sharp fa-regular fa-shopping-bag"></i>
@@ -651,7 +590,7 @@
                             </li> -->
                             <li>
                                 <a href="reset-password.html">
-                                    <i class="fa-sharp fa-regular fa-users"></i>
+                                    <i class="fas fa-key"></i>
                                     <span>Reset Password</span>
                                 </a>
                             </li>
@@ -663,7 +602,7 @@
                             </li> -->
                         </ul>
                     </div>
-                    <a href="#" class="single-menu">
+                    <a href="{% url 'logout' %}" class="single-menu">
                         <div class="icon">
                             <img src="{% static 'assets/images/icons/09.png'%}" alt="icons">
                         </div>
@@ -673,12 +612,14 @@
             </div>
             <div class="bottom-user">
                 <div class="user-wrapper">
-                    <img src="{% static 'assets/images/avatar/02.png'%}" alt="avatar">
+                    {% if user %}
+                    <img src="{{user.profile_picture.url}}" alt="avatar" width="32" height="32">
                     <div class="info">
-                        <h6 class="title">Mack Gok</h6>
-                        <a href="#">intellactai@net.com</a>
+                        <h6 class="title">{{user.username}}</h6>
+                        <a href="#">{{user.email}}</a>
                     </div>
                     <!-- <span>Free</span> -->
+                    {% endif %}
                 </div>
                 <!-- <div class="pro-upgrade">
                     <button class="rts-btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
@@ -702,9 +643,9 @@
                 </div>
             </div>            
             <div class="search__generator mt--50">
-
-                <h4 class="title color-white-title-home">👋 Welcome, Mack Gok</h4>
-
+                {% if user %}
+                <h4 class="title color-white-title-home">👋 Welcome, {{user.username}}</h4>
+                {% endif %}
 
 
                 <div class="tab-content mt--50" id="pills-tabContent">
@@ -729,7 +670,7 @@
                         <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
                             <!-- single image generator area start -->
                             <div class="single-image-generator">
-                                <a href="chatbot.html" class="thumbnail">
+                                <a href="{% url 'main' %}" class="thumbnail">
                                     <img src="{% static 'assets/images/generator/02.jpg'%}" alt="images">
                                 </a>
                                 <div class="inner-content">
@@ -739,7 +680,7 @@
                                             Use our tool to predict the grade of your essay based on AI analysis.
                                         </p>
                                     </div>
-                                    <a href="chatbot.html" class="rts-btn btn-primary">Generate</a>
+                                    <a href="{% url 'main' %}" class="rts-btn btn-primary">Generate</a>
                                 </div>
                             </div>
                             <!-- single image generator area end -->

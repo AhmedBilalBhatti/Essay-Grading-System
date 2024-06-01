@@ -46,7 +46,20 @@ def login(request):
         return render(request, 'login.html')
 
 
+def logout(request):
+    del request.session['identity']
+    return redirect('login')
 
 
 def home(request):
-    return render(request,'index.html')
+    email =  request.session.get('identity')
+    if email:
+        user = Registration.objects.get(email=email)
+    else:
+        return redirect('login')
+    
+    return render(request,'index.html', {'user':user})
+
+
+def main(request):
+    return render(request, 'chatbot.html')
