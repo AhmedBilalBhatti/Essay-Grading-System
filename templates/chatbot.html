@@ -598,7 +598,7 @@
                     </a> -->
                 </div>
                 <div class="single-menu-wrapper">
-                    <a href="chatbot.html" class="single-menu active">
+                    <a href="{% url 'main' %}" class="single-menu active">
                         <div class="icon">
                             <img src="{% static 'assets/images/icons/04.png'%}" alt="icons">
                         </div>
@@ -652,7 +652,7 @@
                             </li>
                         </ul>
                     </div>
-                    <a href="#" class="single-menu">
+                    <a href="{% url 'logout' %}" class="single-menu">
                         <div class="icon">
                             <img src="{% static 'assets/images/icons/09.png'%}" alt="icons">
                         </div>
@@ -663,7 +663,7 @@
             <div class="bottom-user">
                 <div class="user-wrapper">
                     {% if user %}
-                    <img src="{{user.profile_picture}}" alt="avatar" width="64" height="64">
+                    <img src="{{user.profile_picture}}" alt="avatar" width="50" height="50">
                     <div class="info">
                         <h6 class="title">{{user.username}}</h6>
                         <a href="#">{{user.email}}</a>
@@ -751,6 +751,7 @@
                             <i class="fa-regular fa-pen-to-square"></i>
                         </div> -->
                     </div>
+
                     <div class="answer__area">
                         <div class="thumbnail">
                             <img src="{% static 'assets/images/avatar/04.png'%}" alt="avatar">
@@ -782,10 +783,17 @@
                     </div> -->
                 </div>
             </div>
-            <form action="#" class="search-form">
-                <input type="text" placeholder="Message openup...">
+
+
+
+            <form id="chat-form" method="POST" class="search-form">
+                {% csrf_token %}
+                <input id="message-input" type="text" name="message" placeholder="Message openup...">
                 <button><i class="fa-regular fa-arrow-up"></i></button>
             </form>
+
+
+
             <div class="copyright-area-bottom">
                 <p> <a href="#"></a> 2024. All Rights Reserved.</p>
             </div>
@@ -895,7 +903,7 @@
         </div> -->
     </div>
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- jquery Js -->
     <script src="{% static 'assets/js/plugins/jquery.min.js'%}"></script>
     <script src="{% static 'assets/js/plugins/swiper.js'%}"></script>
@@ -915,5 +923,50 @@
         // Set the theme based on the stored value
         document.documentElement.setAttribute('data-theme', storedTheme);
     </script>
+    <script>
+        $(document).ready(function(){
+            $('#chat-form').on('submit', function(e){
+                e.preventDefault();
+        
+                $.ajax({
+                    url: "{% url 'main' %}",
+                    method: 'POST',
+                    data: {
+                        message: $('#message-input').val(),
+                        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                    },
+                    success: function(data){
+                        // Append the user's message to the chat
+                        $('.chat-container').append(`
+                            <div class="single__question__answer">
+                                <div class="question_user">
+                                    <div class="left_user_info">
+                                        <img src="{% static 'assets/images/avatar/03.png'%}" alt="avatar">
+                                        <div class="question__user">${$('#message-input').val()}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        `);
+        
+                        // Append the bot's response to the chat
+                        $('.chat-container').append(`
+                            <div class="answer__area">
+                                <div class="thumbnail">
+                                    <img src="{% static 'assets/images/avatar/04.png'%}" alt="avatar">
+                                </div>
+                                <div class="answer_main__wrapper">
+                                    <h4 class="common__title">Intellectai</h4>
+                                    <p class="disc">${data.message}</p>
+                                </div>
+                            </div>
+                        `);
+        
+                        // Clear the input field
+                        $('#message-input').val('');
+                    }
+                });
+            });
+        });
+        </script>
 </body>
 </html>

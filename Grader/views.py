@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from django.http import HttpResponse
+from django.http import HttpResponse , JsonResponse
 from .models import *
 from django.contrib import messages
 
@@ -67,6 +67,15 @@ def main(request):
         user = Registration.objects.get(email=email)
     else:
         return redirect('login')
+
+    if request.method == 'POST':
+        message = request.POST['message']
+        print(message)
+
+        response = "This is a dummy response."
+
+        return JsonResponse({'message': response})
+
     return render(request, 'chatbot.html', {'user':user})
 
 

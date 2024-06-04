@@ -564,90 +564,89 @@
 
     <div class="dash-board-main-wrapper">
         <div class="left-side-bar">
-            <div class="overlay-mobile-area"></div>
             <div class="inner">
                 <div class="single-menu-wrapper">
-                    <a href="#" class="single-menu active openuptip" flow="right" tooltip="Search">
+                    <a href="{% url 'home' %}" class="single-menu">
                         <div class="icon">
                             <img src="{% static 'assets/images/icons/01.png'%}" alt="icons">
                         </div>
                         <p>Home</p>
                     </a>
-                    {% comment %} <a href="community-feed.html" class="single-menu openuptip" flow="right" tooltip="Search">
+                    <!-- <a href="community-feed.html" class="single-menu">
                         <div class="icon">
-                            <img src="{% static 'assets/images/icons/02.png'%}" alt="icons">
+                            <img src="assets/images/icons/02.png" alt="icons">
                         </div>
                         <p>Community Feed</p>
                     </a>
                     <a href="community-details.html" class="single-menu openuptip" flow="right" tooltip="Search">
                         <div class="icon">
-                            <img src="{% static 'assets/images/icons/02.png'%}" alt="icons">
+                            <img src="assets/images/icons/02.png" alt="icons">
                         </div>
                         <p>Community Details</p>
                     </a>
-                    <a href="manage-subscription.html" class="single-menu openuptip" flow="right" tooltip="Search">
+                    <a href="manage-subscription.html" class="single-menu ">
                         <div class="icon">
-                            <img src="{% static 'assets/images/icons/03.png'%}" alt="icons">
+                            <img src="assets/images/icons/03.png" alt="icons">
                         </div>
                         <p>Manage Subscription</p>
-                    </a> {% endcomment %}
+                    </a> -->
                 </div>
                 <div class="single-menu-wrapper">
-                    <a href="chatbot.html" class="single-menu openuptip" flow="right" tooltip="Search">
+                    <a href="{% url 'main' %}" class="single-menu active">
                         <div class="icon">
                             <img src="{% static 'assets/images/icons/04.png'%}" alt="icons">
                         </div>
                         <p>Essay Predictor</p>
                     </a>
-                    {% comment %} <a href="image-generator.html" class="single-menu openuptip" flow="right" tooltip="Search">
+                    <!-- <a href="image-generator.html" class="single-menu">
                         <div class="icon">
-                            <img src="{% static 'assets/images/icons/05.png'%}" alt="icons">
+                            <img src="assets/images/icons/05.png" alt="icons">
                         </div>
                         <p>Image Generator</p>
                     </a>
-                    <a href="#" class="single-menu openuptip" flow="right" tooltip="Search">
+                    <a href="voicegenerator.html" class="single-menu">
                         <div class="icon">
-                            <img src="{% static 'assets/images/icons/06.png'%}" alt="icons">
+                            <img src="assets/images/icons/06.png" alt="icons">
                         </div>
                         <p>Voice Generate</p>
-                    </a> {% endcomment %}
+                    </a> -->
                 </div>
                 <div class="single-menu-wrapper">
-                    {% comment %} <a href="register.html" class="single-menu">
+                    <!-- <a href="register.html" class="single-menu">
                         <div class="icon">
-                            <img src="{% static 'assets/images/icons/07.png'%}" alt="icons">
+                            <img src="assets/images/icons/07.png" alt="icons">
                         </div>
                         <p>Register</p>
-                    </a> {% endcomment %}
+                    </a> -->
                     <a class="collapse-btn collapsed single-menu" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                         <div class="icon">
                             <img src="{% static 'assets/images/icons/08.png'%}" alt="icons">
                         </div>
                         <p>Settings</p>
                     </a>
-                    {% comment %} <div class="collapse" id="collapseExample">
+                    <div class="collapse" id="collapseExample">
                         <ul class="submenu rts-default-sidebar-list">
                             <li>
-                                <a href="faq.html">
+                                <a href="{% url 'user_profile' %}">
                                     <i class="fa-sharp fa-regular fa-user"></i>
-                                    <span>FAQ's</span>
+                                    <span>Profile</span>
                                 </a>
                             </li>
-                            <li>
+                            <!-- <li>
                                 <a href="login.html">
-                                    <i class="fa-sharp fa-regular fa-shopping-bag"></i>
-                                    <span>log In</span>
+                                    <i class="fa-sharp fa-regular fa-user"></i>
+                                    <span>Login</span>
                                 </a>
-                            </li>
+                            </li> -->
                             <li>
                                 <a href="reset-password.html">
-                                    <i class="fa-sharp fa-regular fa-users"></i>
+                                    <i class="fa-sharp fa-regular fa-user"></i>
                                     <span>Reset Password</span>
                                 </a>
                             </li>
                         </ul>
-                    </div> {% endcomment %}
-                    <a href="#" class="single-menu">
+                    </div>
+                    <a href="{% url 'logout' %}" class="single-menu">
                         <div class="icon">
                             <img src="{% static 'assets/images/icons/09.png'%}" alt="icons">
                         </div>
@@ -657,19 +656,21 @@
             </div>
             <div class="bottom-user">
                 <div class="user-wrapper">
-                    <img src="{% static 'assets/images/avatar/02.png'%}" alt="avatar">
+                    {% if user %}
+                    <img src="{{user.profile_picture}}" alt="avatar" width="50" height="50">
                     <div class="info">
-                        <h6 class="title">Mack Gok</h6>
-                        <a href="#">Intellectai@net.com</a>
+                        <h6 class="title">{{user.username}}</h6>
+                        <a href="#">{{user.email}}</a>
                     </div>
-                    <span>Free</span>
+                    {% endif %}
+                    <!-- <span>Free</span> -->
                 </div>
-                <div class="pro-upgrade">
-                    {% comment %} <button class="rts-btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
-                        <img src="{% static 'assets/images/icons/14.png'%}" alt="icons">
+                <!-- <div class="pro-upgrade">
+                    <button class="rts-btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
+                        <img src="assets/images/icons/14.png" alt="icons">
                         Upgrade To Pro
-                    </button> {% endcomment %}
-                </div>
+                    </button>
+                </div> -->
             </div>
         </div>
 
@@ -682,10 +683,12 @@
                             <div class="user-profile-main-wrapper">
                                 <div class="thumbnaiul">
                                     <img src="{% static 'assets/images/banner/01.jpg'%}" alt="iamges">
+                                    {% if user %}
                                     <div class="profile-image">
-                                        <img src="{% static 'assets/images/banner/02.png'%}" alt="banner_image">
+                                        <img src="{{user.profile_picture.url}}" alt="banner_image" width="200" height="200">
                                     </div>
-                                    <button class="rts-btn btn-primary">
+                                    {% endif %}
+                                    <!-- <button class="rts-btn btn-primary">
                                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <g clip-path="url(#clip0_1314_3881)">
                                                 <path d="M14.9995 15.8333C15.1643 15.8332 15.3254 15.7844 15.4624 15.6928C15.5994 15.6012 15.7062 15.4711 15.7693 15.3188C15.8323 15.1666 15.8488 14.9991 15.8167 14.8374C15.7845 14.6758 15.7052 14.5273 15.5887 14.4108L10.4454 9.26828C9.66399 8.48715 8.60438 8.04834 7.49953 8.04834C6.39468 8.04834 5.33506 8.48715 4.55369 9.26828L2.74369 11.0775C2.59189 11.2346 2.5079 11.4451 2.5098 11.6636C2.5117 11.8821 2.59934 12.0911 2.75384 12.2456C2.90835 12.4001 3.11736 12.4878 3.33586 12.4897C3.55436 12.4916 3.76486 12.4076 3.92203 12.2558L5.73203 10.4466C6.20804 9.99173 6.84111 9.73788 7.49953 9.73788C8.15794 9.73788 8.79101 9.99173 9.26703 10.4466L14.4104 15.5891C14.5666 15.7454 14.7785 15.8332 14.9995 15.8333Z" fill="white" />
@@ -702,28 +705,29 @@
                                             </defs>
                                         </svg>
                                         Update Cover Photo
-                                    </button>
+                                    </button> -->
                                 </div>
                                 <div class="user-profile-content-details">
                                     <form action="#">
+                                        {% if user %}
                                         <div class="half-input-wrapper">
                                             <div class="single">
-                                                <label for="f-name">First Name</label>
-                                                <input id="f-name" type="text" placeholder="Adam Jon">
+                                                <label for="f-name">Name</label>
+                                                <input id="f-name" type="text" placeholder="{{user.username}}">
                                             </div>
-                                            <div class="single">
+                                            <!-- <div class="single">
                                                 <label for="l-name">Last Name</label>
                                                 <input id="l-name" type="text" placeholder="Adam Jon">
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <div class="half-input-wrapper">
                                             <div class="single">
                                                 <label for="email">Email/Number</label>
-                                                <input id="email" type="email" placeholder="Email Number">
+                                                <input id="email" type="email" placeholder="{{user.email}}">
                                             </div>
                                             <div class="single">
-                                                <label for="phonenumber">Phone Number</label>
-                                                <input id="phonenumber" type="text" placeholder="+61 022 111 444">
+                                                <label for="phonenumber">Joined at</label>
+                                                <input id="phonenumber" type="text" placeholder="{{user.created_at}}">
                                             </div>
                                         </div>
                                         <div class="single">
@@ -731,6 +735,7 @@
                                             <textarea name="" id="message" cols="30" rows="10" placeholder="I am a passionate and dedicated education instructor committed to fostering a love of learning and academic success in my students.With a background in [Field/Area of Expertise], I bring 5 years of experience in teaching and educational leadership."></textarea>
                                         </div>
                                         <button class="rts-btn btn-primary mt--20">Update Profile</button>
+                                        {% endif %}
                                     </form>
                                 </div>
                             </div>
