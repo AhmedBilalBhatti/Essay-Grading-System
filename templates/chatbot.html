@@ -13,7 +13,21 @@
     <link rel="stylesheet" href="{% static 'assets/css/style.css'%}">
 
 </head>
+<style>
+    .header {
+    display: flex;
+    align-items: center;
+    }
 
+    .thumbnail {
+        margin-right: 10px;
+    }
+    .element {
+    font-size: 16px; /* Adjust text size */
+    margin-top: 10px; /* Adjust top margin */
+    margin-bottom: 10px; /* Adjust bottom margin */
+}
+</style>
 <body class="chatbot">
 
     <div class="header-area-one">
@@ -681,66 +695,6 @@
         </div>
         <div class="main-center-content-m-left center-content search-sticky">
             <div class="question_answer__wrapper__chatbot">
-                <!-- <div class="single__question__answer">
-                    <div class="question_user">
-                        <div class="left_user_info">
-                            <img src="{% static 'assets/images/avatar/03.png'%}" alt="avatar">
-                            <div class="question__user">what is Intellectai?</div>
-                        </div>
-                        <div class="edit__icon openuptip" tooltip="Edit It">
-                            <i class="fa-regular fa-pen-to-square"></i>
-                        </div>
-                    </div>
-                    <div class="answer__area">
-                        <div class="thumbnail">
-                            <img src="{% static 'assets/images/avatar/04.png'%}" alt="avatar">
-                        </div>
-                        <div class="answer_main__wrapper">
-                            <h4 class="common__title">Intellectai</h4>
-                            <p class="disc">
-                                The Open Unified Process, is a simplified version of the Rational Unified Process (RUP) used for agile and iterative software development. It was developed within the Eclipse Foundation and is based on the donation of process content by IBM. OpenUP targets small and colocated teams interested in agile and iterative development and is a lean Unified Process that applies iterative and incremental approaches within a structured lifecycle. It embraces a pragmatic approach and is positioned as an easy and flexible version of RUP [1][2][3]
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="share-reaction-area">
-                        <ul>
-                            <li><a href="#" class="openuptip" tooltip="Save It"><i class="fa-regular fa-bookmark"></i></a></li>
-                            <li><a href="#" class="openuptip" tooltip="Like"><i class="fa-light fa-thumbs-up"></i></a></li>
-                            <li><a href="#" class="openuptip" tooltip="Unlike"><i class="fa-regular fa-thumbs-down"></i></a></li>
-                        </ul>
-                    </div>
-                </div> -->
-                <!-- <div class="single__question__answer">
-                    <div class="question_user">
-                        <div class="left_user_info">
-                            <img src="{% static 'assets/images/avatar/03.png'%}" alt="avatar">
-                            <div class="question__user">what is Intellectai?</div>
-                        </div>
-                        <div class="edit__icon openuptip" tooltip="Edit It">
-                            <i class="fa-regular fa-pen-to-square"></i>
-                        </div>
-                    </div>
-                    <div class="answer__area">
-                        <div class="thumbnail">
-                            <img src="{% static 'assets/images/avatar/04.png'%}" alt="avatar">
-                        </div>
-                        <div class="answer_main__wrapper">
-                            <h4 class="common__title">Intellectai</h4>
-                            <p class="disc">
-                                The Open Unified Process, is a simplified version of the Rational Unified Process (RUP) used for agile and iterative software development. It was developed within the Eclipse Foundation and is based on the donation of process content by IBM. OpenUP targets small and colocated teams interested in agile and iterative development and is a lean Unified Process that applies iterative and incremental approaches within a structured lifecycle. It embraces a pragmatic approach and is positioned as an easy and flexible version of RUP [1][2][3]
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="share-reaction-area">
-                        <ul>
-                            <li><a href="#" class="openuptip" tooltip="Save It"><i class="fa-regular fa-bookmark"></i></a></li>
-                            <li><a href="#" class="openuptip" tooltip="Like"><i class="fa-light fa-thumbs-up"></i></a></li>
-                            <li><a href="#" class="openuptip" tooltip="Unlike"><i class="fa-regular fa-thumbs-down"></i></a></li>
-                        </ul>
-                    </div>
-                </div> -->
                 <div class="single__question__answer">
                     <div class="question_user">
                         <div class="left_user_info">
@@ -923,50 +877,59 @@
         // Set the theme based on the stored value
         document.documentElement.setAttribute('data-theme', storedTheme);
     </script>
-    <script>
-        $(document).ready(function(){
-            $('#chat-form').on('submit', function(e){
-                e.preventDefault();
-        
-                $.ajax({
-                    url: "{% url 'main' %}",
-                    method: 'POST',
-                    data: {
-                        message: $('#message-input').val(),
-                        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
-                    },
-                    success: function(data){
-                        // Append the user's message to the chat
-                        $('.chat-container').append(`
-                            <div class="single__question__answer">
-                                <div class="question_user">
-                                    <div class="left_user_info">
-                                        <img src="{% static 'assets/images/avatar/03.png'%}" alt="avatar">
-                                        <div class="question__user">${$('#message-input').val()}</div>
-                                    </div>
-                                </div>
-                            </div>
-                        `);
-        
-                        // Append the bot's response to the chat
-                        $('.chat-container').append(`
-                            <div class="answer__area">
+
+
+<script>
+    $(document).ready(function(){
+        $('#chat-form').on('submit', function(e){
+            e.preventDefault();
+
+            // Append the user's message to the chat
+            $('.question_answer__wrapper__chatbot').append(`
+                <div class="single__question__answer">
+                    <div class="question_user">
+                        <div class="left_user_info">
+                            <img src="{% static 'assets/images/avatar/03.png'%}" alt="avatar">
+                            <div class="question__user">${$('#message-input').val()}</div>
+                        </div>
+                    </div>
+                </div>
+            `);
+
+            $.ajax({
+                url: "{% url 'main' %}",
+                method: 'POST',
+                data: {
+                    message: $('#message-input').val(),
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                },
+                success: function(response){
+                    console.log(response); // Log the response object to the console
+
+                    // Append the bot's response to the chat
+                    $('.question_answer__wrapper__chatbot').append(`
+                        <div class="answer__area">
+                            <div class="header">
                                 <div class="thumbnail">
                                     <img src="{% static 'assets/images/avatar/04.png'%}" alt="avatar">
                                 </div>
-                                <div class="answer_main__wrapper">
-                                    <h4 class="common__title">Intellectai</h4>
-                                    <p class="disc">${data.message}</p>
-                                </div>
+                                <h4 class="common__title">Intellectai</h4>
                             </div>
-                        `);
-        
-                        // Clear the input field
-                        $('#message-input').val('');
-                    }
-                });
+                            <div class="answer_main__wrapper">
+                                <p class="disc">${response.message}</p>
+                            </div>
+                        </div>
+                    `);
+
+                    // Clear the input field
+                    $('#message-input').val('');
+                },
+                error: function(jqXHR, textStatus, errorThrown){
+                    console.log(textStatus, errorThrown);
+                }
             });
         });
-        </script>
+    });
+</script>
 </body>
 </html>
