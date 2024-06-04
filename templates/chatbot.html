@@ -198,7 +198,7 @@
                                     <div class="user_body_content">
                                         <ul class="items">
                                             <li class="single_items">
-                                                <a class="hader_popup_link" href="profile.html">
+                                                <a class="hader_popup_link" href="{% url 'user_profile' %}">
                                                     <i class="fa-light fa-user"></i>
                                                     Profile
                                                 </a>
@@ -626,14 +626,14 @@
                     </a> -->
                     <a class="collapse-btn collapsed single-menu" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                         <div class="icon">
-                            <img src="{% static 'assets/images/icons/0.png'%}" alt="icons">
+                            <img src="{% static 'assets/images/icons/08.png'%}" alt="icons">
                         </div>
                         <p>Settings</p>
                     </a>
                     <div class="collapse" id="collapseExample">
                         <ul class="submenu rts-default-sidebar-list">
                             <li>
-                                <a href="faq.html">
+                                <a href="{% url 'user_profile' %}">
                                     <i class="fa-sharp fa-regular fa-user"></i>
                                     <span>Profile</span>
                                 </a>
