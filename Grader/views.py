@@ -68,3 +68,12 @@ def main(request):
     else:
         return redirect('login')
     return render(request, 'chatbot.html', {'user':user})
+
+
+def user_profile(request):
+    email =  request.session.get('identity')
+    if email:
+        user = Registration.objects.get(email=email)
+    else:
+        return redirect('login')
+    return render(request, 'profile.html', {'user':user})

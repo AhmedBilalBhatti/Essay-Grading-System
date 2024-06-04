@@ -178,18 +178,22 @@
 
                             </div>
                             <div class="single_action__haeader user_avatar__information openuptip" flow="down" tooltip="Profile">
+                                {% if user %}
                                 <div class="avatar">
-                                    <img src="{% static 'assets/images/avatar/01.png'%}" alt="avatar">
+                                    <img src="{{user.profile_picture}}" alt="avatar">
                                 </div>
                                 <div class="user_information_main_wrapper slide-down__click">
                                     <div class="user_header">
+                                        
                                         <div class="main-avatar">
-                                            <img src="{% static 'assets/images/avatar/user-2.svg'%}" alt="user">
+                                            <img src="{{ user.profile_picture }}" alt="user">
                                         </div>
+                                        
                                         <div class="user_naim-information">
-                                            <h3 class="title">MR.Crow Kader</h3>
-                                            <span class="desig">CEO, Valo How Masud</span>
+                                            <h3 class="title">{{user.username}}</h3>
+                                            <span class="desig">{{user.email}}</span>
                                         </div>
+                                        {% endif %}
                                     </div>
                                     <div class="user_body_content">
                                         <ul class="items">
@@ -205,7 +209,7 @@
                                                     Settings
                                                 </a>
                                             </li>
-                                            <li class="single_items">
+                                            {% comment %} <li class="single_items">
                                                 <a class="hader_popup_link" href="#">
                                                     <i class="fa-light fa-person-snowmobiling"></i>
                                                     Billing
@@ -216,13 +220,13 @@
                                                     <i class="fa-solid fa-wave-pulse"></i>
                                                     Activity
                                                 </a>
-                                            </li>
-                                            <li class="single_items">
+                                            </li> {% endcomment %}
+                                            {% comment %} <li class="single_items">
                                                 <a class="hader_popup_link" href="#">
                                                     <i class="fa-regular fa-bell"></i>
                                                     Help
                                                 </a>
-                                            </li>
+                                            </li> {% endcomment %}
                                         </ul>
                                     </div>
                                     <div class="popup-footer-btn">
@@ -622,7 +626,7 @@
                     </a> -->
                     <a class="collapse-btn collapsed single-menu" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                         <div class="icon">
-                            <img src="{% static 'assets/images/icons/08.png'%}" alt="icons">
+                            <img src="{% static 'assets/images/icons/0.png'%}" alt="icons">
                         </div>
                         <p>Settings</p>
                     </a>
@@ -658,11 +662,13 @@
             </div>
             <div class="bottom-user">
                 <div class="user-wrapper">
-                    <img src="{% static 'assets/images/avatar/02.png'%}" alt="avatar">
+                    {% if user %}
+                    <img src="{{user.profile_picture}}" alt="avatar" width="64" height="64">
                     <div class="info">
-                        <h6 class="title">Mack Gok</h6>
-                        <a href="#">intellectai@net.com</a>
+                        <h6 class="title">{{user.username}}</h6>
+                        <a href="#">{{user.email}}</a>
                     </div>
+                    {% endif %}
                     <!-- <span>Free</span> -->
                 </div>
                 <!-- <div class="pro-upgrade">
