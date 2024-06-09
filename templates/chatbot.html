@@ -696,10 +696,10 @@
         <div class="main-center-content-m-left center-content search-sticky">
             <div class="question_answer__wrapper__chatbot">
                 <div class="single__question__answer">
-                    <div class="question_user">
+                    <div class="question_user" style="display:none;">
                         <div class="left_user_info">
-                            <img src="{% static 'assets/images/avatar/03.png'%}" alt="avatar">
-                            <div class="question__user">what is Intellectai?</div>
+                            {% comment %} <img src="{% static 'assets/images/avatar/03.png'%}" alt="avatar">
+                            <div class="question__user">what is Intellectai?</div> {% endcomment %}
                         </div>
                         <!-- <div class="edit__icon openuptip" tooltip="Edit It">
                             <i class="fa-regular fa-pen-to-square"></i>
@@ -711,22 +711,24 @@
                             <img src="{% static 'assets/images/avatar/04.png'%}" alt="avatar">
                         </div>
                         <div class="answer_main__wrapper">
-                            <h4 class="common__title">Intellectai</h4>
+                            <h4 class="common__title">Welcome to the Essay Grading System</h4>
                             <p class="disc">
-                                Working with a chatbot involves several steps, from designing and building the bot to deploying and maintaining it. Here's a general overview of how to work with a chatbot:
+                                Hi there! Welcome to our essay grading system. We're here to assist you in enhancing your writing skills. Our system provides detailed feedback on your essays, aiding you in your journey towards improvement.
                             </p>
                             <div class="order_list_answer">
                                 <ol>
                                     <li>
-                                        <p>Define the Purpose: Determine the purpose and goals of the chatbot. What tasks or interactions do you want the bot to handle? Who is the target audience?</p>
+                                        <p>Submit Your Essay: Upload your essay for grading.</p>
                                     </li>
                                     <li>
-                                        <p>Define the Purpose: Determine the purpose and goals of the chatbot. What tasks or interactions do you want the bot to handle? Who is the target audience?</p>
+                                        <p>Receive Feedback: Get insightful feedback to refine your writing.</p>
                                     </li>
                                 </ol>
                             </div>
                         </div>
                     </div>
+                    
+                    
 
                     <!-- <div class="share-reaction-area">
                         <ul>
@@ -752,6 +754,10 @@
                 <p> <a href="#"></a> 2024. All Rights Reserved.</p>
             </div>
         </div>
+
+
+
+        
         <!-- <div class="right-side-bar-new-chat-option">
             <div class="new-chat-option">
                 <img src="assets/images/logo/logo-02.png" alt="logo">
@@ -884,12 +890,13 @@
         $('#chat-form').on('submit', function(e){
             e.preventDefault();
 
-            // Append the user's message to the chat
             $('.question_answer__wrapper__chatbot').append(`
                 <div class="single__question__answer">
                     <div class="question_user">
                         <div class="left_user_info">
-                            <img src="{% static 'assets/images/avatar/03.png'%}" alt="avatar">
+                        {% if user.profile_picture %}
+                            <img src="{{ user.profile_picture.url }}" alt="avatar" width="64">
+                        {% endif %}
                             <div class="question__user">${$('#message-input').val()}</div>
                         </div>
                     </div>
