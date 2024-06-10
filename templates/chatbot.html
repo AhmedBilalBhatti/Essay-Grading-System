@@ -925,18 +925,18 @@
                             </div>
                             <h4 class="common__title" style="color: Blue;">Intellectai</h4>
                         </div>
-                        <p class="topic" style="text-align: center; font-weight: bold; margin-bottom: 10px;color:white;"> ${response.message.topic}</p>
+                        <p class="topic" style="text-align: center; font-weight: bold; margin-bottom: 10px;color:cyan;"> ${response.message.topic}</p>
                         <div class="answer_main__wrapper">
                             <ul class="grade-info">
-                                <li style="font-weight: bold; margin-left: 65px;color:white;">Grade: ${response.message.grade} out of 5.</li>
-                                <li style="font-weight: bold; margin-left: 65px;color:white;">Number of Errors: ${response.message.num_errors}</li>
-                                <li style="font-weight: bold; margin-left: 65px;color:white;">Number of Uncommon Words: ${response.message.num_uncommon_words}</li>
-                                <li style="font-weight: bold; margin-left: 65px;color:white;">Punctuations: ${response.message.num_punctuation}</li>
-                                {% comment %} <li>Detailed Uncommon Words: ${response.message.detailed_uncommon_words}</li> {% endcomment %}
-                                <li style="font-weight: bold; margin-left: 45px; color: ${sentimentDetails.sentimentColor};">Sentiment of Essay: ${sentimentDetails.sentimentText}</li>
-                                <li style="font-weight: bold; margin-left: 65px;color:white;">Suggestions: </li>
-                                <ul style="list-style-type: circle; padding-left: 85px; color: white;">
-                                ${response.message.suggestions.map(suggestion => `<li style="color: white;">${suggestion}</li>`).join('')}
+                                <li style="font-weight: bold; margin-left: 65px;"><span style="color: white;">Grade:</span> <span style="color: #44c767;">${response.message.grade}</span> <span style="color: #fff;">out of 5.</span></li>
+                                <li style="font-weight: bold; margin-left: 65px;"><span style="color: white;">Number of Errors:</span> <span style="color: #ff69b4;">${response.message.num_errors}</span></li>
+                                <li style="font-weight: bold; margin-left: 65px;"><span style="color: white;">Number of Uncommon Words:</span> <span style="color: #33cc33;">${response.message.num_uncommon_words}</span></li>
+                                <li style="font-weight: bold; margin-left: 65px;"><span style="color: white;">Punctuations:</span> <span style="color: #ff9900;">${response.message.num_punctuation}</span></li>
+                                <!-- <li>Detailed Uncommon Words: ${response.message.detailed_uncommon_words}</li> -->
+                                <li style="font-weight: bold; margin-left: 65px;"><span style="color: white;">Sentiment of Essay:</span> <span style="color: #0066ff;">${response.message.sentiment_label}</span></li>
+                                <li style="font-weight: bold; margin-left: 65px;"><span style="color: white;">Suggestions</span></li>
+                                <ul style="list-style-type: circle; padding-left: 87px;">
+                                ${response.message.suggestions.map(suggestion => `<li><span style="color: #fff;">${suggestion}</span></li>`).join('')}
                                 </ul>
                             </ul>
                             <br>
@@ -956,7 +956,6 @@
             });
         });
     });
-</script>    
-
+</script>
 </body>
 </html>

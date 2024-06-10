@@ -177,12 +177,16 @@
                             </div>
                             <div class="single_action__haeader user_avatar__information openuptip" flow="down" tooltip="Profile">
                                 <div class="avatar">
-                                    <img src="{% static 'assets/images/avatar/01.png'%}" alt="avatar">
+                                    {% if user %}
+                                    <img src="{{user.profile_picture.url}}" alt="avatar">
+                                    {% endif %}
                                 </div>
                                 <div class="user_information_main_wrapper slide-down__click">
                                     <div class="user_header">
                                         <div class="main-avatar">
-                                            <img src="{% static 'assets/images/avatar/user-2.svg'%}" alt="user">
+                                            {% if user %}
+                                            <img src="{{user.profile_picture.url}}" alt="avatar">
+                                            {% endif %}
                                         </div>
                                         <div class="user_naim-information">
                                             <h3 class="title">MR.Crow Kader</h3>
