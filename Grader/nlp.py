@@ -57,23 +57,37 @@ def grade_and_assess_mistakes(essay):
     detailed_uncommon_words = list(all_uncommon_words - set(['media', 'social', 'society', 'information', 'people', 'health', 'negative', 'polarization', 'important', 'misinformation']))
 
     return avg_grade, total_errors, len(all_uncommon_words), total_punctuation, detailed_uncommon_words, avg_sentiment, sentiment_label
-def improvement_suggestions(essay):
+
+
+def improvement_suggestions(total_errors, num_uncommon_words):
     suggestions = []
-    _, total_errors, _, _, _, _ = grade_and_assess_mistakes(essay)
 
     if total_errors > 10:
         suggestions.append("Your essay contains numerous grammatical errors. Consider using grammar-checking tools to review your essay.")
     else:
         suggestions.append("Your essay has few grammatical errors. Keep up the good work!")
 
-    _, _, num_uncommon_words, _, detailed_uncommon_words, _ = grade_and_assess_mistakes(essay)
-    
     if num_uncommon_words > 10:
         suggestions.append("Your essay contains many uncommon words. Try to use simpler language to ensure clarity.")
     else:
         suggestions.append("Your essay uses common words appropriately. Great job!")
 
+    if total_errors == 0:
+        suggestions.append("Congratulations! Your essay is error-free.")
+    elif total_errors <= 5:
+        suggestions.append("You've done well in minimizing grammatical errors. Keep refining your writing skills.")
+    else:
+        suggestions.append("Consider revising sections of your essay where grammatical errors are prominent.")
+
+    if num_uncommon_words == 0:
+        suggestions.append("Your use of common vocabulary ensures clarity in your writing.")
+    elif num_uncommon_words <= 5:
+        suggestions.append("You've used a balanced mix of common and uncommon words. Ensure they are contextually appropriate.")
+    else:
+        suggestions.append("Check if the uncommon words used in your essay are necessary for conveying your ideas effectively.")
+
     return suggestions
+
 
 def get_top_words(model, feature_names, n_top_words, topic_idx):
     return [feature_names[i] for i in model.components_[topic_idx].argsort()[:-n_top_words - 1:-1]]

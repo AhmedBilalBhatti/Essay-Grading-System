@@ -749,10 +749,10 @@
             </form>
 
 
-
-            <div class="copyright-area-bottom" style="po">
+{% comment %} 
+            <div class="copyright-area-bottom">
                 <p> <a href="#"></a> 2024. All Rights Reserved.</p>
-            </div>
+            </div> {% endcomment %}
         </div>
 
 
@@ -900,6 +900,8 @@
                             <div class="question__user">${$('#message-input').val()}</div>
                         </div>
                     </div>
+                            <br>
+                            <br>
                 </div>
             `);
     
@@ -916,26 +918,34 @@
     
                     // Append the bot's response to the chat
                     $('.question_answer__wrapper__chatbot').append(`
-                        <div class="answer__area" >
-                            <div class="header">
-                                <div class="thumbnail">
-                                    <img src="{% static 'assets/images/avatar/04.png'%}" alt="avatar">
-                                </div>
-                                <h4 class="common__title">Intellectai</h4>
+                    <div class="answer__area">
+                        <div class="header">
+                            <div class="thumbnail">
+                                <img src="{% static 'assets/images/avatar/04.png'%}" alt="avatar" style="margin-bottom: 26px;">
                             </div>
-                            <p>Topic :${response.message.topic}</p>
-                            <div class="answer_main__wrapper">
-                                <p class="disc" style="color:#fff;">Grade : ${response.message.grade}</p>
-                                <p class="disc" style="color:#fff;">Number of Errors: ${response.message.num_errors}</p>
-                                <p class="disc" style="color:#fff;">Number of Uncommon Words: ${response.message.num_uncommon_words}</p>
-                                <p class="disc" style="color:#fff;">Punctuations: ${response.message.num_punctuation}</p>
-                                <p class="disc" style="color:#fff;">Detailed Uncommon Words: ${response.message.detailed_uncommon_words}</p>
-                                <p class="disc" style="color:#fff;">Sentiment of Essay: ${response.message.sentiment_label}</p>
-                            </div>
+                            <h4 class="common__title" style="color: Blue;">Intellectai</h4>
+                        </div>
+                        <p class="topic" style="text-align: center; font-weight: bold; margin-bottom: 10px;color:white;"> ${response.message.topic}</p>
+                        <div class="answer_main__wrapper">
+                            <ul class="grade-info">
+                                <li style="font-weight: bold; margin-left: 65px;color:white;">Grade: ${response.message.grade} out of 5.</li>
+                                <li style="font-weight: bold; margin-left: 65px;color:white;">Number of Errors: ${response.message.num_errors}</li>
+                                <li style="font-weight: bold; margin-left: 65px;color:white;">Number of Uncommon Words: ${response.message.num_uncommon_words}</li>
+                                <li style="font-weight: bold; margin-left: 65px;color:white;">Punctuations: ${response.message.num_punctuation}</li>
+                                {% comment %} <li>Detailed Uncommon Words: ${response.message.detailed_uncommon_words}</li> {% endcomment %}
+                                <li style="font-weight: bold; margin-left: 45px; color: ${sentimentDetails.sentimentColor};">Sentiment of Essay: ${sentimentDetails.sentimentText}</li>
+                                <li style="font-weight: bold; margin-left: 65px;color:white;">Suggestions: </li>
+                                <ul style="list-style-type: circle; padding-left: 85px; color: white;">
+                                ${response.message.suggestions.map(suggestion => `<li style="color: white;">${suggestion}</li>`).join('')}
+                                </ul>
+                            </ul>
+                            <br>
                             <br>
                             <br>
                         </div>
-                    `);
+                    </div>
+                `);
+                
     
                     // Clear the input field
                     $('#message-input').val('');
@@ -947,5 +957,6 @@
         });
     });
 </script>    
+
 </body>
 </html>

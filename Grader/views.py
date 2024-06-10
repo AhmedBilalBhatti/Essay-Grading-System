@@ -76,7 +76,7 @@ def main(request):
         new_essay = message
 
         grade, num_errors, num_uncommon_words, num_punctuation, detailed_uncommon_words, avg_sentiment, sentiment_label = grade_and_assess_mistakes(new_essay)
-        # suggestions = improvement_suggestions(new_essay)
+        suggestions = improvement_suggestions(num_errors, num_uncommon_words)
         topic = topic_modelling(new_essay)
         
         if sentiment_label == '1 star':
@@ -89,19 +89,16 @@ def main(request):
             sentiment_label = 'Positive'
         else:
             sentiment_label = 'Very Positive'
-        
-        detailed_uncommon_words = slice_string(detailed_uncommon_words)
-        print('Ptt================',detailed_uncommon_words)
-        
+            
         response = {
             'grade': grade,
             'num_errors': num_errors,
             'num_uncommon_words': num_uncommon_words,
             'num_punctuation': num_punctuation,
-            'detailed_uncommon_words': detailed_uncommon_words,
-            'avg_sentiment': avg_sentiment,
+            # 'detailed_uncommon_words': detailed_uncommon_words,
+            # 'avg_sentiment': avg_sentiment,
             'sentiment_label': sentiment_label,
-            # 'suggestions': suggestions,
+            'suggestions': suggestions,
             'topic': topic,
         }
 
