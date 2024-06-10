@@ -742,15 +742,15 @@
 
 
 
-            <form id="chat-form" method="POST" class="search-form">
+            <form id="chat-form" method="POST" class="search-form" style="position: fixed;">
                 {% csrf_token %}
-                <input id="message-input" type="text" name="message" placeholder="Message openup...">
+                <input id="message-input" type="text" name="message" placeholder="Message openup..." style="position: fixed;">
                 <button><i class="fa-regular fa-arrow-up"></i></button>
             </form>
 
 
 
-            <div class="copyright-area-bottom">
+            <div class="copyright-area-bottom" style="po">
                 <p> <a href="#"></a> 2024. All Rights Reserved.</p>
             </div>
         </div>
@@ -884,12 +884,12 @@
         document.documentElement.setAttribute('data-theme', storedTheme);
     </script>
 
-
 <script>
     $(document).ready(function(){
         $('#chat-form').on('submit', function(e){
             e.preventDefault();
-
+    
+            // Append user's question to the chat
             $('.question_answer__wrapper__chatbot').append(`
                 <div class="single__question__answer">
                     <div class="question_user">
@@ -902,7 +902,8 @@
                     </div>
                 </div>
             `);
-
+    
+            // Send AJAX request to the server
             $.ajax({
                 url: "{% url 'main' %}",
                 method: 'POST',
@@ -912,22 +913,30 @@
                 },
                 success: function(response){
                     console.log(response); // Log the response object to the console
-
+    
                     // Append the bot's response to the chat
                     $('.question_answer__wrapper__chatbot').append(`
-                        <div class="answer__area">
+                        <div class="answer__area" >
                             <div class="header">
                                 <div class="thumbnail">
                                     <img src="{% static 'assets/images/avatar/04.png'%}" alt="avatar">
                                 </div>
                                 <h4 class="common__title">Intellectai</h4>
                             </div>
+                            <p>Topic :${response.message.topic}</p>
                             <div class="answer_main__wrapper">
-                                <p class="disc">${response.message}</p>
+                                <p class="disc" style="color:#fff;">Grade : ${response.message.grade}</p>
+                                <p class="disc" style="color:#fff;">Number of Errors: ${response.message.num_errors}</p>
+                                <p class="disc" style="color:#fff;">Number of Uncommon Words: ${response.message.num_uncommon_words}</p>
+                                <p class="disc" style="color:#fff;">Punctuations: ${response.message.num_punctuation}</p>
+                                <p class="disc" style="color:#fff;">Detailed Uncommon Words: ${response.message.detailed_uncommon_words}</p>
+                                <p class="disc" style="color:#fff;">Sentiment of Essay: ${response.message.sentiment_label}</p>
                             </div>
+                            <br>
+                            <br>
                         </div>
                     `);
-
+    
                     // Clear the input field
                     $('#message-input').val('');
                 },
@@ -937,6 +946,6 @@
             });
         });
     });
-</script>
+</script>    
 </body>
 </html>
