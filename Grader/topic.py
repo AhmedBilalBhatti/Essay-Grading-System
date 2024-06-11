@@ -12,12 +12,10 @@ def topic_modelling(text):
     word_tokens = word_tokenize(text)
     filtered_text = [w for w in word_tokens if not w in stop_words]
 
-    # Prepare text for LDA
     texts = [filtered_text]
     dictionary = corpora.Dictionary(texts)
     corpus = [dictionary.doc2bow(text) for text in texts]
 
-    # Train LDA model with more topics and words
     lda_model = models.LdaModel(corpus, num_topics=3, id2word = dictionary, passes=50)
     topics = lda_model.print_topics(num_words=10)
     for topic in topics:

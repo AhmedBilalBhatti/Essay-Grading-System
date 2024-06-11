@@ -15672,7 +15672,7 @@ body.sal-disabled [data-sal|=flip] {
 }
 
 .register .dash-board-main-wrapper {
-  margin-top: 65px;
+  margin-top: 450px;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {

@@ -8,12 +8,10 @@ from transformers import pipeline
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.decomposition import LatentDirichletAllocation
 
-# Load the Hugging Face model for sentiment analysis
 tokenizer = AutoTokenizer.from_pretrained("nlptown/bert-base-multilingual-uncased-sentiment")
 model = AutoModelForSequenceClassification.from_pretrained("nlptown/bert-base-multilingual-uncased-sentiment")
 sentiment_analysis = pipeline("sentiment-analysis", model=model, tokenizer=tokenizer)
 
-# LanguageTool for grammar and vocabulary checking
 tool = language_tool_python.LanguageTool('en-US')
 
 
@@ -23,7 +21,6 @@ def split_into_chunks(text, chunk_size=512):
     chunks = [tokens[i:i + chunk_size] for i in range(0, len(tokens), chunk_size)]
     return [tokenizer.decode(chunk, skip_special_tokens=False) for chunk in chunks]
 
-# Function to grade and assess mistakes in an essay
 def grade_and_assess_mistakes(essay):
     chunks = split_into_chunks(essay, chunk_size=512)
     total_grade = 0
